@@ -27,11 +27,12 @@ Query Parser::parse(std::string query_str) {
     }
     
     string select_str = match[1];
+    string from_str = match[2];
     
     Query query;
     
     // evaluate SELECT
-    if(std::regex_match(select_str, std::regex("SELECT\\s*"))) {
+    if(std::regex_match(select_str, std::regex("SELECT\\s*\\*\\s*", regex::ECMAScript))) {
         // leave query.selections empty to indicate that all should be
         // selected
     } else {
@@ -41,12 +42,11 @@ Query Parser::parse(std::string query_str) {
         
         // split the remainder by "," and check with regex
         // if it confirms to our input format
-        std::regex attribute_regex("(?:([a-zA-Z0-9-_]+)\\.){0,1}([a-zA-Z0-9-_]+)", regex::ECMAScript);
+        std::regex attribute_regex("(?:([\'\"a-zA-Z0-9-_]+)\\.){0,1}([\'\"a-zA-Z0-9-_]+)", regex::ECMAScript);
         
         vector<string> tokens;
         boost::algorithm::split(tokens, select_str, boost::is_any_of(","));
         for(uint i=0; i<tokens.size(); i++) {
-            cout << "Token: " << tokens[i] << endl;
             std::smatch match;
             std::regex_search(tokens[i], match, attribute_regex);
             
@@ -57,32 +57,44 @@ Query Parser::parse(std::string query_str) {
             // if the group before the dot was matched, we have a binding
             // like "binding.attribute"
             if(match[1].length() > 0) {
-                AttributeSelection selection(match[1], match[2]);
+                Selection selection(match[1], match[2]);
                 query.selections.push_back(selection);
             } else {
                 string attribute = match[2];
-                
                 // check if we have a constant string like 'foo' or "bar"
-                if(std::regex_match((string)match[2], std::regex("\".*\"|\'.*\'"))) {
+                if(std::regex_match(attribute, std::regex("(\".*\")|(\'.*\')"))) {
                     boost::algorithm::erase_all(attribute, "\"");
                     boost::algorithm::erase_all(attribute, "\'");
                     
                     Constant constant(attribute);
-                    ConstantSelection selection(constant);
+                    Selection selection(constant);
                     
                     query.selections.push_back(selection);
-                } else /* TODO Check for numeric constants here*/ {
-                    AttributeSelection selection(string(), attribute);
+                } else {
+                    Selection selection(string(""), attribute);
                     query.selections.push_back(selection);
                 }
+                
+                /* TODO Check for numeric constants here*/
             }
         }
     }
     
-    //cout << match.length() << " " << match.size() << endl;
+    // parse FROM
+    boost::algorithm::erase_all(from_str, "FROM");
     
-    for(uint i=0; i<match.size()-1; i++) {
-        cout << match[i+1] << endl;
+    cout << from_str << endl;
+    
+    vector<string> tokens;
+    boost::algorithm::split(tokens, from_str, boost::is_any_of(","));
+    for(uint i=0; i<tokens.size(); i++) {
+        smatch match;
+        if(regex_search((string)tokens[i], match, std::regex("\\s*([a-zA-Z-_]+)\\s+([a-zA-Z-_]+)\\s*"))) {
+            Relation relation(match[1], match[2]);
+            query.relations.push_back(relation);
+        } else {
+            throw std::invalid_argument("relation in FROM clause does not match format");
+        }
     }
     
     return query;

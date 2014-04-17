@@ -8,6 +8,10 @@
 
 #include "Constant.h"
 
+Constant::Constant() {
+    
+}
+
 Constant::Constant(std::string value) {
     this->type = String;
     this->string_value = value;

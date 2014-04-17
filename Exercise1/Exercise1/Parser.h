@@ -15,7 +15,7 @@
 
 class Parser {
 public:
-    Query parse(std::string query_str);
+    static Query parse(std::string query_str);
 };
 
 

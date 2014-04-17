@@ -12,8 +12,6 @@
 #include <vector>
 
 #include "Selection.h"
-#include "ConstantSelection.h"
-#include "AttributeSelection.h"
 #include "Relation.h"
 
 class Query {

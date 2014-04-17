@@ -8,3 +8,13 @@
 
 #include "Selection.h"
 
+Selection::Selection(Constant constant) {
+    this->type = ConstantSelection;
+    this->constant = constant;
+}
+
+Selection::Selection(std::string binding, std::string name) {
+    this->type = AttributeSelection;
+    this->binding = binding;
+    this->name = name;
+}

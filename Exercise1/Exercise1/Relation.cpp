@@ -7,3 +7,9 @@
 //
 
 #include "Relation.h"
+
+Relation::Relation(std::string name, std::string binding) {
+    this->name = name;
+    this->binding = binding;
+}
+

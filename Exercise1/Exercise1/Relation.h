@@ -13,6 +13,8 @@
 
 class Relation {
 public:
+    Relation(std::string name, std::string binding);
+    
     std::string name;
     std::string binding;
 };

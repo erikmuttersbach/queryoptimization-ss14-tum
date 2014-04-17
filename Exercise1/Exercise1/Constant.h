@@ -18,6 +18,7 @@ typedef enum {
 
 class Constant {
 public:
+    Constant();
     Constant(std::string value);
     Constant(double value);
     
