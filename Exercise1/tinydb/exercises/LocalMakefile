@@ -1,0 +1,5 @@
+bin/exercise1a$(EXEEXT): bin/exercises/exercise1a.o $(obj)
+	$(BUILDEXE)
+
+# Alias for all exercises
+exercises_bin: bin/exercise1a$(EXEEXT)
