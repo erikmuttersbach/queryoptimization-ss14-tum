@@ -26,6 +26,7 @@ public:
     SelectionType type;
     
     // if the selection is an AttributeSelection
+    // TODO Should use an Attribute (Attribute.h) here
     std::string binding;
     std::string name;
     

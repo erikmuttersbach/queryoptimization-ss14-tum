@@ -113,3 +113,16 @@ TEST(ParserTest, TestFromRelations) {
     ASSERT_STREQ("schema", query.relations[1].name.c_str());
     ASSERT_STREQ("s", query.relations[1].binding.c_str());
 }
+
+// --- WHERE
+
+TEST(ParserTest, TestWhereCondition) {
+    Query query = Parser::parse(string("SELECT \'foo\' FROM table t WHERE t.id = s.idx"));
+    
+    ASSERT_EQ(query.join_conditions.size(), 1);
+    
+    ASSERT_STREQ("t", query.join_conditions[0].left.binding.c_str());
+    ASSERT_STREQ("id", query.join_conditions[0].left.name.c_str());
+    ASSERT_STREQ("s", query.join_conditions[0].right.binding.c_str());
+    ASSERT_STREQ("idx", query.join_conditions[0].right.name.c_str());
+}

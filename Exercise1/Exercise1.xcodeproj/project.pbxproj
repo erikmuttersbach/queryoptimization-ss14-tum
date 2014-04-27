@@ -23,6 +23,10 @@
 		9CF85C6319000C3A00E7689F /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9CF85C6219000C3A00E7689F /* gtest-all.cc */; };
 		9CF85C6419000C9F00E7689F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF831D718FE8DA900E7689F /* main.cpp */; };
 		9CF85C6619000D0E00E7689F /* gtest_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9CF85C6519000D0E00E7689F /* gtest_main.cc */; };
+		9CF85C691900309A00E7689F /* JoinCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF85C671900309A00E7689F /* JoinCondition.cpp */; };
+		9CF85C6A1900309A00E7689F /* JoinCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF85C671900309A00E7689F /* JoinCondition.cpp */; };
+		9CF85C6D190030B700E7689F /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF85C6B190030B700E7689F /* Attribute.cpp */; };
+		9CF85C6E190030B700E7689F /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF85C6B190030B700E7689F /* Attribute.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9CEB9994190D030100BA954D /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		9CF831D418FE8DA900E7689F /* Exercise1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Exercise1; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF831D718FE8DA900E7689F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9CF831D918FE8DA900E7689F /* Exercise1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Exercise1.1; sourceTree = "<group>"; };
@@ -66,6 +71,10 @@
 		9CF85C6119000B6700E7689F /* Exercise1 copy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Exercise1 copy"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF85C6219000C3A00E7689F /* gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gtest-all.cc"; sourceTree = "<group>"; };
 		9CF85C6519000D0E00E7689F /* gtest_main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gtest_main.cc; sourceTree = "<group>"; };
+		9CF85C671900309A00E7689F /* JoinCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JoinCondition.cpp; sourceTree = "<group>"; };
+		9CF85C681900309A00E7689F /* JoinCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinCondition.h; sourceTree = "<group>"; };
+		9CF85C6B190030B700E7689F /* Attribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Attribute.cpp; sourceTree = "<group>"; };
+		9CF85C6C190030B700E7689F /* Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attribute.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +98,7 @@
 		9CF831CB18FE8DA800E7689F = {
 			isa = PBXGroup;
 			children = (
+				9CEB9994190D030100BA954D /* Makefile */,
 				9CF831D618FE8DA900E7689F /* Exercise1 */,
 				9CF831D518FE8DA900E7689F /* Products */,
 			);
@@ -128,6 +138,8 @@
 				9CF831E618FF185200E7689F /* Relation.cpp */,
 				9CF831E318FF17E200E7689F /* Selection.cpp */,
 				9CF831E418FF17E200E7689F /* Selection.h */,
+				9CF85C671900309A00E7689F /* JoinCondition.cpp */,
+				9CF85C681900309A00E7689F /* JoinCondition.h */,
 			);
 			name = Query;
 			sourceTree = "<group>";
@@ -137,6 +149,8 @@
 			children = (
 				9CF831F218FF1B6C00E7689F /* Constant.cpp */,
 				9CF831F318FF1B6C00E7689F /* Constant.h */,
+				9CF85C6B190030B700E7689F /* Attribute.cpp */,
+				9CF85C6C190030B700E7689F /* Attribute.h */,
 			);
 			name = Types;
 			sourceTree = "<group>";
@@ -219,9 +233,11 @@
 			files = (
 				9CF831F718FFA72900E7689F /* Parser.cpp in Sources */,
 				9CF831E218FF17B300E7689F /* Query.cpp in Sources */,
+				9CF85C6D190030B700E7689F /* Attribute.cpp in Sources */,
 				9CF85C6419000C9F00E7689F /* main.cpp in Sources */,
 				9CF831F418FF1B6C00E7689F /* Constant.cpp in Sources */,
 				9CF831E518FF17E200E7689F /* Selection.cpp in Sources */,
+				9CF85C691900309A00E7689F /* JoinCondition.cpp in Sources */,
 				9CF831E818FF185200E7689F /* Relation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,7 +252,9 @@
 				9CF85C6319000C3A00E7689F /* gtest-all.cc in Sources */,
 				9CF85C5719000B6700E7689F /* Constant.cpp in Sources */,
 				9CF85C5919000B6700E7689F /* Selection.cpp in Sources */,
+				9CF85C6E190030B700E7689F /* Attribute.cpp in Sources */,
 				9CF85C6619000D0E00E7689F /* gtest_main.cc in Sources */,
+				9CF85C6A1900309A00E7689F /* JoinCondition.cpp in Sources */,
 				9CF85C5A19000B6700E7689F /* Relation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

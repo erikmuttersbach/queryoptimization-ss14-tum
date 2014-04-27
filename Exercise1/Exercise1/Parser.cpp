@@ -14,6 +14,7 @@
 #include <vector>
 
 #include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/regex.hpp>
 
 using namespace std;
 
@@ -28,6 +29,7 @@ Query Parser::parse(std::string query_str) {
     
     string select_str = match[1];
     string from_str = match[2];
+    string where_str = match[3];
     
     Query query;
     
@@ -83,8 +85,6 @@ Query Parser::parse(std::string query_str) {
     // parse FROM
     boost::algorithm::erase_all(from_str, "FROM");
     
-    cout << from_str << endl;
-    
     vector<string> tokens;
     boost::algorithm::split(tokens, from_str, boost::is_any_of(","));
     for(uint i=0; i<tokens.size(); i++) {
@@ -95,6 +95,29 @@ Query Parser::parse(std::string query_str) {
         } else {
             throw std::invalid_argument("relation in FROM clause does not match format");
         }
+    }
+    
+    // parse WHERE
+    boost::erase_all(where_str, "WHERE");
+    boost::replace_all(where_str, " and ", ",");
+    boost::replace_all(where_str, " AND ", ",");
+    
+    // TODO, does only parse bindings on the right side
+    std::regex join_condition_regex("([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+)=(?:([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+))", regex::ECMAScript);
+
+    cout << where_str << endl;
+    boost::algorithm::split(tokens, where_str, boost::is_any_of(","));
+    for(uint i=0; i<tokens.size(); i++) {
+        boost::erase_all(tokens[i], " ");
+        
+        std::smatch match;
+        std::regex_search(tokens[i], match, join_condition_regex);
+        
+        Attribute left(match[1], match[2]);
+        Attribute right(match[3], match[4]);
+        JoinCondition join_condition(left, right);
+        
+        query.join_conditions.push_back(join_condition);
     }
     
     return query;
