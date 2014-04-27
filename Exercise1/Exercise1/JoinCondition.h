@@ -11,12 +11,24 @@
 
 #include "Attribute.h"
 
+#include "Constant.h"
+
+typedef enum {
+    JoinConditionRightAttribute,
+    JoinConditionRightConstant
+} JoinConditionType;
+
 class JoinCondition {
 public:
     JoinCondition(Attribute left, Attribute right);
+    JoinCondition(Attribute left, Constant right);
+    
+    JoinConditionType type;
     
     Attribute left;
-    Attribute right;
+    
+    Attribute rightAttribute;
+    Constant rightConstant;
 };
 
 #endif /* defined(__Exercise1__JoinCondition__) */

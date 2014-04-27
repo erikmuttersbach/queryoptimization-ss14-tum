@@ -101,23 +101,38 @@ Query Parser::parse(std::string query_str) {
     boost::erase_all(where_str, "WHERE");
     boost::replace_all(where_str, " and ", ",");
     boost::replace_all(where_str, " AND ", ",");
+    boost::erase_all(where_str, " ");
     
-    // TODO, does only parse bindings on the right side
-    std::regex join_condition_regex("([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+)=(?:([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+))", regex::ECMAScript);
+    std::regex join_condition_attribute_regex("([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+)=(?:([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+))", regex::ECMAScript);
+    std::regex join_condition_constant_regex("([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+)=([\'\"a-zA-Z0-9-_]+)", regex::ECMAScript);
 
     cout << where_str << endl;
+    
     boost::algorithm::split(tokens, where_str, boost::is_any_of(","));
     for(uint i=0; i<tokens.size(); i++) {
-        boost::erase_all(tokens[i], " ");
-        
         std::smatch match;
-        std::regex_search(tokens[i], match, join_condition_regex);
+        std::regex_search(tokens[i], match, join_condition_attribute_regex);
         
-        Attribute left(match[1], match[2]);
-        Attribute right(match[3], match[4]);
-        JoinCondition join_condition(left, right);
+        if(match.size() > 0) {
+            Attribute left(match[1], match[2]);
+            Attribute right(match[3], match[4]);
+            JoinCondition join_condition(left, right);
         
-        query.join_conditions.push_back(join_condition);
+            query.join_conditions.push_back(join_condition);
+        } else {
+            // TODO we cannot parse numeric constants
+            std::regex_search(tokens[i], match, join_condition_constant_regex);
+            
+            string constant_str = match[3];
+            boost::algorithm::erase_all(constant_str, "\"");
+            boost::algorithm::erase_all(constant_str, "\'");
+            
+            Attribute left(match[1], match[2]);
+            Constant right(constant_str);
+            JoinCondition join_condition(left, right);
+            
+            query.join_conditions.push_back(join_condition);
+        }
     }
     
     return query;

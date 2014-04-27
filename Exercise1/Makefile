@@ -11,7 +11,7 @@ all: $(OBJS) main.o
 	$(CC) $(LFLAGS) $(OBJS) main.o
     
 test: $(OBJS) $(TEST_OBJS)
-	$(CC) $(LFLAGS) $(OBJS) $(TEST_OBJS) -o extercise1_test
+	$(CC) $(LFLAGS) $(OBJS) $(TEST_OBJS) -o exercise1_test.out
     
 clean:
 	rm -rf ./*.o
