@@ -106,8 +106,6 @@ Query Parser::parse(std::string query_str) {
     std::regex join_condition_attribute_regex("([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+)=(?:([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+))", regex::ECMAScript);
     std::regex join_condition_constant_regex("([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+)=([\'\"a-zA-Z0-9-_]+)", regex::ECMAScript);
 
-    cout << where_str << endl;
-    
     boost::algorithm::split(tokens, where_str, boost::is_any_of(","));
     for(uint i=0; i<tokens.size(); i++) {
         std::smatch match;
