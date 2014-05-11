@@ -7,9 +7,11 @@
 //
 
 #include "Relation.h"
+namespace Parser{
 
 Relation::Relation(std::string name, std::string binding) {
     this->name = name;
     this->binding = binding;
 }
 
+}

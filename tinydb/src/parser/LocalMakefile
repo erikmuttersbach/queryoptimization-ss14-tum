@@ -1,0 +1,9 @@
+obj_parser:=					\
+	bin/parser/Attribute.o		\
+	bin/parser/Constant.o		\
+	bin/parser/JoinCondition.o	\
+	bin/parser/Parser.o			\
+	bin/parser/Query.o			\
+	bin/parser/Relation.o		\
+	bin/parser/Selection.o			
+

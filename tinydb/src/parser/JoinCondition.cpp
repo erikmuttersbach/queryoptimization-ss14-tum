@@ -7,6 +7,7 @@
 //
 
 #include "JoinCondition.h"
+namespace Parser{
 
 JoinCondition::JoinCondition(Attribute left, Attribute right) : left(left), rightAttribute(right) {
     this->type = JoinConditionRightAttribute;
@@ -14,4 +15,6 @@ JoinCondition::JoinCondition(Attribute left, Attribute right) : left(left), righ
 
 JoinCondition::JoinCondition(Attribute left, Constant right) : left(left), rightConstant(right) {
     this->type = JoinConditionRightConstant;
+}
+
 }

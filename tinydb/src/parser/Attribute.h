@@ -10,7 +10,7 @@
 #define __Exercise1__Attribute__
 
 #include <string>
-
+namespace Parser{
 class Attribute {
 public:
     Attribute();
@@ -19,5 +19,5 @@ public:
     std::string binding;
     std::string name;
 };
-
+}
 #endif /* defined(__Exercise1__Attribute__) */

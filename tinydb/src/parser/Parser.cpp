@@ -18,6 +18,8 @@
 
 using namespace std;
 
+namespace Parser{
+
 Query Parser::parse(std::string query_str) {
     regex regex("(SELECT .*)(FROM .*)(WHERE .*)", regex_constants::icase);
     smatch match;
@@ -48,7 +50,7 @@ Query Parser::parse(std::string query_str) {
         
         vector<string> tokens;
         boost::algorithm::split(tokens, select_str, boost::is_any_of(","));
-        for(uint i=0; i<tokens.size(); i++) {
+        for(uint64_t i=0; i<tokens.size(); i++) {
             std::smatch match;
             std::regex_search(tokens[i], match, attribute_regex);
             
@@ -87,7 +89,7 @@ Query Parser::parse(std::string query_str) {
     
     vector<string> tokens;
     boost::algorithm::split(tokens, from_str, boost::is_any_of(","));
-    for(uint i=0; i<tokens.size(); i++) {
+    for(uint64_t i=0; i<tokens.size(); i++) {
         smatch match;
         if(regex_search((string)tokens[i], match, std::regex("\\s*([a-zA-Z-_]+)\\s+([a-zA-Z-_]+)\\s*"))) {
             Relation relation(match[1], match[2]);
@@ -107,7 +109,7 @@ Query Parser::parse(std::string query_str) {
     std::regex join_condition_constant_regex("([a-zA-Z0-9-_]+)\\.([a-zA-Z0-9-_]+)=([\'\"a-zA-Z0-9-_]+)", regex::ECMAScript);
 
     boost::algorithm::split(tokens, where_str, boost::is_any_of(","));
-    for(uint i=0; i<tokens.size(); i++) {
+    for(uint64_t i=0; i<tokens.size(); i++) {
         std::smatch match;
         std::regex_search(tokens[i], match, join_condition_attribute_regex);
         
@@ -134,4 +136,6 @@ Query Parser::parse(std::string query_str) {
     }
     
     return query;
+}
+
 }

@@ -7,6 +7,7 @@
 //
 
 #include "Constant.h"
+namespace Parser{
 
 Constant::Constant() {
     
@@ -22,3 +23,4 @@ Constant::Constant(double value) {
     this->double_value = value;
 }
 
+}

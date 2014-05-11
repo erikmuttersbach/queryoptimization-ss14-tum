@@ -7,7 +7,7 @@
 //
 
 #include "Attribute.h"
-
+namespace Parser{
 Attribute::Attribute() {
     
 }
@@ -15,4 +15,5 @@ Attribute::Attribute() {
 Attribute::Attribute(std::string binding, std::string name) {
     this->binding = binding;
     this->name = name;
+}
 }

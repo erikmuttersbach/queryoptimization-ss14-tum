@@ -10,6 +10,10 @@
 
 using namespace std;
 
+namespace Parser{
+
 Query::Query() {
     
+}
+
 }

@@ -13,6 +13,8 @@
 
 #include "Constant.h"
 
+namespace Parser{
+
 typedef enum {
     JoinConditionRightAttribute,
     JoinConditionRightConstant
@@ -31,4 +33,5 @@ public:
     Constant rightConstant;
 };
 
+}
 #endif /* defined(__Exercise1__JoinCondition__) */

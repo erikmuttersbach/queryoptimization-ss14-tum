@@ -13,6 +13,8 @@
 
 #include "Constant.h"
 
+namespace Parser{
+
 typedef enum {
     AttributeSelection,
     ConstantSelection
@@ -34,4 +36,5 @@ public:
     Constant constant;
 };
 
+}
 #endif /* defined(__Exercise1__Selecttion__) */

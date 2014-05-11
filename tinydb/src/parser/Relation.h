@@ -11,6 +11,8 @@
 
 #include <string>
 
+namespace Parser{
+
 class Relation {
 public:
     Relation(std::string name, std::string binding);
@@ -19,4 +21,5 @@ public:
     std::string binding;
 };
 
+}
 #endif /* defined(__Exercise1__Relation__) */

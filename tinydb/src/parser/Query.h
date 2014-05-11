@@ -15,6 +15,8 @@
 #include "Relation.h"
 #include "JoinCondition.h"
 
+namespace Parser{
+
 class Query {
 public:
     Query();
@@ -24,4 +26,5 @@ public:
     std::vector<JoinCondition> join_conditions;
 };
 
+}
 #endif /* defined(__Exercise1__Query__) */

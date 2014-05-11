@@ -11,6 +11,8 @@
 
 #include <string>
 
+namespace Parser{
+
 typedef enum {
     Double,
     String
@@ -27,4 +29,5 @@ public:
     double double_value;
 };
 
+}
 #endif /* defined(__Exercise1__Constant__) */

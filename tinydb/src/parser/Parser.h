@@ -12,11 +12,12 @@
 #include <string>
 
 #include "Query.h"
+namespace Parser{
 
 class Parser {
 public:
     static Query parse(std::string query_str);
 };
 
-
+}
 #endif /* defined(__Exercise1__Parser__) */
